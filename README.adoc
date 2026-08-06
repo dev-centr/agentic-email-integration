@@ -1,0 +1,81 @@
+ifndef::env-github[:icons: font]
+:toc: preamble
+:toclevels: 2
+:sectanchors:
+
+ifndef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/agentic-email-integration/graphs/contributors]
+image:https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/agentic-email-integration/network/members]
+image:https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/agentic-email-integration/stargazers]
+image:https://img.shields.io/github/issues/dev-centr/agentic-email-integration.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/agentic-email-integration/issues]
+image:https://img.shields.io/github/license/dev-centr/agentic-email-integration.svg?style=for-the-badge[License,link=https://github.com/dev-centr/agentic-email-integration/blob/main/LICENSE]
+endif::[]
+
+ifdef::env-github[]
+image:https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge[Contributors]
+image:https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge[Forks]
+image:https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge[Stars]
+image:https://img.shields.io/github/issues/dev-centr/agentic-email-integration.svg?style=for-the-badge[Issues]
+image:https://img.shields.io/github/license/dev-centr/agentic-email-integration.svg?style=for-the-badge[License]
+endif::[]
+
+= Agentic Email Integration
+
+Own-your-inbox Gmail integration: Himalaya poller + Cursor agents for drafts and CI.
+
+link:https://github.com/dev-centr/agentic-email-integration/issues[Report Bug] ·
+link:https://github.com/dev-centr/agentic-email-integration/issues[Request Feature]
+
+== About The Project
+
+Local **integration** into your owned Gmail: poll with https://github.com/pimalaya/himalaya[Himalaya], classify developer/CI mail, trigger a Cursor agent to draft replies or investigate failures.
+
+This is not a disposable AgentMail-style inbox. You keep the mailbox, OAuth, and vendor connections.
+
+=== Status
+
+Early scaffold (`0.1.0`). Draft-only by design.
+
+== Installation
+
+[source,bash]
+----
+pnpm install
+pnpm build
+pnpm link --global   # optional: exposes `aei`
+----
+
+Node.js **22.13+** required (`@cursor/sdk`).
+
+== Usage
+
+[source,bash]
+----
+cp config.example.json5 config.local.json5
+# edit account, rules, repoRoots
+export CURSOR_API_KEY=cursor_...   # or set in the environment on Windows
+
+pnpm aei doctor
+pnpm aei check --dry-run
+pnpm aei watch
+----
+
+== Documentation
+
+* Component docs: `docs/` (Antora) — build with `pnpm docs:build`
+* Portal wiring: see `docs/modules/ROOT/pages/how-to/wire-portal-docs.adoc`
+
+== Changelog
+
+See link:CHANGELOG.adoc[CHANGELOG.adoc] and `changelog-details/`.
+
+== License
+
+MIT — see link:LICENSE[LICENSE].
+
+== Contact
+
+DevCentr.org — support@devcentr.org
+
+* Project: https://github.com/dev-centr/agentic-email-integration
+* Site: https://devcentr.org
