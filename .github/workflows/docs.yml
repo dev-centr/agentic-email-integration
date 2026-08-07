@@ -1,18 +1,28 @@
+# Validate Antora component build only.
+# Do NOT publish a secondary Antora site — docs live at https://docs.devcentr.org
+# (wired via https://github.com/dev-centr/docs).
+
 name: Documentation
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'docs/**'
+      - 'antora-playbook.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'antora-playbook.yml'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build-docs:
@@ -35,8 +45,7 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
-      - name: Build site
-        id: antora
+      - name: Build site (validation only)
         uses: antora-supplemental/antora-build-action@v2
         with:
           playbook: antora-playbook.yml
@@ -45,33 +54,3 @@ jobs:
           setup_pnpm: false
           setup_node: false
           fetch: true
-
-      - name: Add Pages root redirect
-        run: |
-          SITE="${{ steps.antora.outputs.site-path }}"
-          printf '%s\n' \
-            '<!DOCTYPE html>' \
-            '<meta charset="utf-8">' \
-            '<meta http-equiv="refresh" content="0; url=agentic-email-integration/">' \
-            '<link rel="canonical" href="agentic-email-integration/">' \
-            '<title>Agentic Email Integration</title>' \
-            "<script>location.replace('agentic-email-integration/')</script>" \
-            '<p><a href="agentic-email-integration/">Agentic Email Integration documentation</a></p>' \
-            > "$SITE/index.html"
-
-      - uses: actions/upload-pages-artifact@v4
-        with:
-          path: ${{ steps.antora.outputs.site-path }}
-
-  deploy:
-    needs: build-docs
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
-    steps:
-      - id: deploy
-        uses: actions/deploy-pages@v4
