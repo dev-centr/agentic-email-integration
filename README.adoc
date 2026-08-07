@@ -3,21 +3,12 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-ifndef::env-github[]
+[[readme-top]]
 image:https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/agentic-email-integration/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/agentic-email-integration/network/members]
 image:https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/agentic-email-integration/stargazers]
 image:https://img.shields.io/github/issues/dev-centr/agentic-email-integration.svg?style=for-the-badge[Issues,link=https://github.com/dev-centr/agentic-email-integration/issues]
 image:https://img.shields.io/github/license/dev-centr/agentic-email-integration.svg?style=for-the-badge[License,link=https://github.com/dev-centr/agentic-email-integration/blob/main/LICENSE]
-endif::[]
-
-ifdef::env-github[]
-image:https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge[Contributors]
-image:https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge[Forks]
-image:https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge[Stars]
-image:https://img.shields.io/github/issues/dev-centr/agentic-email-integration.svg?style=for-the-badge[Issues]
-image:https://img.shields.io/github/license/dev-centr/agentic-email-integration.svg?style=for-the-badge[License]
-endif::[]
 
 = Agentic Email Integration
 
@@ -36,6 +27,8 @@ This is not a disposable AgentMail-style inbox. You keep the mailbox, OAuth, and
 
 Early scaffold (`0.1.0`). Draft-only by design.
 
+link:#readme-top[back to top]
+
 == Installation
 
 [source,bash]
@@ -46,6 +39,8 @@ pnpm link --global   # optional: exposes `aei`
 ----
 
 Node.js **22.13+** required (`@cursor/sdk`).
+
+link:#readme-top[back to top]
 
 == Usage
 
@@ -60,6 +55,8 @@ pnpm aei check --dry-run
 pnpm aei watch
 ----
 
+link:#readme-top[back to top]
+
 == Documentation
 
 * Component docs: `docs/` (Antora) — build with `pnpm docs:build`
@@ -73,9 +70,13 @@ See link:CHANGELOG.adoc[CHANGELOG.adoc] and `changelog-details/`.
 
 MIT — see link:LICENSE[LICENSE].
 
+link:#readme-top[back to top]
+
 == Contact
 
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/agentic-email-integration
 * Site: https://devcentr.org
+
+link:#readme-top[back to top]
