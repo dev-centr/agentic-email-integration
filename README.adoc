@@ -3,7 +3,28 @@ ifndef::env-github[:icons: font]
 :toclevels: 2
 :sectanchors:
 
-[[readme-top]]
+ifdef::env-github[]
+++++
+<a id="readme-top"></a>
+<div align="center">
+<a href="https://github.com/dev-centr/agentic-email-integration/graphs/contributors"><img src="https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge" alt="Contributors"></a>
+<a href="https://github.com/dev-centr/agentic-email-integration/network/members"><img src="https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge" alt="Forks"></a>
+<a href="https://github.com/dev-centr/agentic-email-integration/stargazers"><img src="https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge" alt="Stars"></a>
+<a href="https://github.com/dev-centr/agentic-email-integration/issues"><img src="https://img.shields.io/github/issues/dev-centr/agentic-email-integration.svg?style=for-the-badge" alt="Issues"></a>
+<a href="https://github.com/dev-centr/agentic-email-integration/blob/main/LICENSE"><img src="https://img.shields.io/github/license/dev-centr/agentic-email-integration.svg?style=for-the-badge" alt="License"></a>
+<br />
+<h3 align="center">Agentic Email Integration</h3>
+<p align="center">
+Own-your-inbox Gmail integration: Himalaya poller + Cursor agents for drafts and CI.<br /><br />
+<a href="https://github.com/dev-centr/agentic-email-integration/issues">Report Bug</a>
+&middot;
+<a href="https://github.com/dev-centr/agentic-email-integration/issues">Request Feature</a>
+</p>
+</div>
+++++
+endif::[]
+
+ifndef::env-github[]
 image:https://img.shields.io/github/contributors/dev-centr/agentic-email-integration.svg?style=for-the-badge[Contributors,link=https://github.com/dev-centr/agentic-email-integration/graphs/contributors]
 image:https://img.shields.io/github/forks/dev-centr/agentic-email-integration.svg?style=for-the-badge[Forks,link=https://github.com/dev-centr/agentic-email-integration/network/members]
 image:https://img.shields.io/github/stars/dev-centr/agentic-email-integration.svg?style=for-the-badge[Stars,link=https://github.com/dev-centr/agentic-email-integration/stargazers]
@@ -16,6 +37,7 @@ Own-your-inbox Gmail integration: Himalaya poller + Cursor agents for drafts and
 
 link:https://github.com/dev-centr/agentic-email-integration/issues[Report Bug] ·
 link:https://github.com/dev-centr/agentic-email-integration/issues[Request Feature]
+endif::[]
 
 == About The Project
 
