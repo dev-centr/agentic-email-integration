@@ -1,0 +1,64 @@
+= Config reference
+:navtitle: Config
+:description: JSON5 configuration for accounts, rules, Cursor cwd mapping, and safety.
+
+Copy `config.example.json5`. Search order:
+
+. `--config` path
+. `./config.local.json5`
+. `./config.json5`
+. `%APPDATA%/agentic-email-integration/config.json5` (Windows)
+. `~/.config/agentic-email-integration/config.json5`
+
+== Top-level keys
+
+[cols="1,1,2"]
+|===
+| Key | Type | Notes
+
+| `account`
+| string
+| Himalaya account name
+
+| `mailbox`
+| string
+| Folder/label (e.g. `INBOX`)
+
+| `pollIntervalSeconds`
+| number
+| Watch interval
+
+| `pageSize`
+| number
+| Envelopes per poll
+
+| `unreadOnly`
+| boolean
+| Prefer unread filter
+
+| `cursor`
+| object
+| API key env, model, cwd maps
+
+| `safety`
+| object
+| Draft-only flags
+
+| `rules`
+| array
+| Ordered matchers
+|===
+
+== `cursor.repoRoots`
+
+Map `owner/repo` or `owner/*` to a local root. `dev-centr/*` → `C:/code/github.com/dev-centr` resolves `dev-centr/foo` to `…/dev-centr/foo`.
+
+== Rules
+
+Each rule has `name`, `action` (`draft-reply` | `investigate-ci` | `ignore`), and `match`:
+
+* `fromIncludes` — substring list (OR)
+* `subjectIncludesAny` — OR
+* `subjectIncludesAll` — AND
+
+Empty match criteria never match.

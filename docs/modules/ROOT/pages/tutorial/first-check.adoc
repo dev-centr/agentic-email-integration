@@ -1,0 +1,47 @@
+= First mail check
+:navtitle: First mail check
+:description: End-to-end dry run of aei against your Himalaya Gmail account.
+
+== Prerequisites
+
+* Himalaya can list your inbox (`himalaya envelope list`).
+* `config.local.json5` copied from `config.example.json5` and edited.
+* `CURSOR_API_KEY` set for a real run (optional for `--dry-run`).
+
+== Steps
+
+. Install and build:
++
+[source,bash]
+----
+pnpm install
+pnpm build
+----
+. Copy config:
++
+[source,bash]
+----
+cp config.example.json5 config.local.json5
+----
+. Confirm tooling:
++
+[source,bash]
+----
+pnpm aei doctor
+----
+. Dry-run one poll (prints prompts, does not call Cursor or mark processed):
++
+[source,bash]
+----
+pnpm aei check --dry-run -n 1
+----
+. Live run when ready:
++
+[source,bash]
+----
+pnpm aei check -n 1
+----
+
+== Expected outcome
+
+Matching messages trigger a Cursor agent. For correspondence and CI, the agent uses Himalaya to create **drafts** only. Review drafts in Gmail before sending.

@@ -1,0 +1,45 @@
+= CLI reference
+:navtitle: CLI
+:description: aei subcommands, flags, and exit codes.
+
+Binary:: `aei` (package `@dev-centr/agentic-email-integration`)
+
+== Global
+
+[cols="1,2"]
+|===
+| Flag | Meaning
+
+| `-V`, `--version`
+| Marketing version + channel + build id
+
+| `-c`, `--config <path>`
+| JSON5 config path (on subcommands)
+|===
+
+== `aei doctor`
+
+Prints a redacted JSON diagnostic and writes the same dump under the state directory.
+
+Exit codes:: `0` ok · `2` Himalaya missing · `3` Cursor API key missing · `4` config missing
+
+== `aei check`
+
+One poll cycle: list → classify → trigger.
+
+[cols="1,2"]
+|===
+| Flag | Meaning
+
+| `--dry-run`
+| Print prompts; do not call Cursor; do not mark processed
+
+| `-n`, `--limit <n>`
+| Cap messages this run
+|===
+
+Exit codes:: `0` ok · `2` one or more agent failures · `4` config missing
+
+== `aei watch`
+
+Repeats `check` every `pollIntervalSeconds` (minimum 15s). Ctrl+C finishes the current poll then exits.

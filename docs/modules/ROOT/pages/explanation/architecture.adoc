@@ -1,0 +1,39 @@
+= Architecture
+:navtitle: Architecture
+:description: Local checker, Himalaya mail plane, Cursor SDK agent plane, draft-only write path.
+
+== Planes
+
+[source]
+----
+┌─────────────────┐     poll/classify      ┌──────────────────┐
+│  Gmail (owned)  │◄──────────────────────►│  Himalaya CLI    │
+└────────┬────────┘                        └────────┬─────────┘
+         │                                          │
+         │  envelopes                               │ read / draft
+         ▼                                          ▼
+┌─────────────────┐     Agent.prompt       ┌──────────────────┐
+│  aei check/watch│───────────────────────►│  Cursor SDK      │
+└─────────────────┘                        │  (local cwd)     │
+                                           └──────────────────┘
+----
+
+* **Mail plane** — Himalaya (+ ortie/token broker). `aei` and agents shell out; no parallel OAuth stack in-process.
+* **Agent plane** — `@cursor/sdk` local runtime in a mapped repo checkout.
+* **Safety** — prompts and config insist on draft-only write-back.
+
+== Classification
+
+Rules in JSON5 config match `from` / `subject` substrings. First match wins. Actions:
+
+* `draft-reply` — correspondence / PR notifications
+* `investigate-ci` — failing checks mail
+* `ignore` — explicit drop
+
+== Processed state
+
+Message ids are recorded under the OS state dir so `watch` does not re-fire forever. Dry-run skips marking.
+
+== Product essentials
+
+CLI surfaces follow Software Product Essentials: `--version` with build id, `doctor` dump, CI release artifacts, Antora docs + changelog.

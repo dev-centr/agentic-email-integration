@@ -1,0 +1,66 @@
+{
+  // Copy to %APPDATA%/agentic-email-integration/config.json5 (Windows)
+  // or ~/.config/agentic-email-integration/config.json5, or pass --config.
+
+  // Himalaya account name from ~/.config/himalaya/config.toml
+  account: "gmail",
+
+  // Folder / label to watch (Gmail label name when using the gmail backend)
+  mailbox: "INBOX",
+
+  // How often `aei watch` polls (seconds)
+  pollIntervalSeconds: 120,
+
+  // Max envelopes to inspect per poll
+  pageSize: 25,
+
+  // Only act on unread by default
+  unreadOnly: true,
+
+  cursor: {
+    // Reads process.env[apiKeyEnv]
+    apiKeyEnv: "CURSOR_API_KEY",
+    model: "composer-2.5",
+    // Fallback cwd when no repo mapping matches
+    defaultCwd: "C:/code/github.com/dev-centr",
+    // Optional: map GitHub owner/repo from mail → local checkout
+    repoRoots: {
+      "dev-centr/*": "C:/code/github.com/dev-centr",
+      "AMDphreak/*": "C:/code/github.com/AMDphreak",
+    },
+  },
+
+  safety: {
+    // Always true for v0.1 — agents create Gmail drafts only; you send.
+    createDraftOnly: true,
+    neverAutoSend: true,
+  },
+
+  // First matching rule wins
+  rules: [
+    {
+      name: "ci-failure",
+      action: "investigate-ci",
+      match: {
+        fromIncludes: ["notifications@github.com", "noreply@github.com"],
+        subjectIncludesAny: ["failed", "failure", "CI", "checks", "workflow"],
+      },
+    },
+    {
+      name: "github-pr",
+      action: "draft-reply",
+      match: {
+        fromIncludes: ["notifications@github.com"],
+        subjectIncludesAny: ["Pull Request", "requested your review", "Mentioned you"],
+      },
+    },
+    {
+      name: "dev-correspondence",
+      action: "draft-reply",
+      match: {
+        // Optional Gmail label (himalaya mailbox) or subject/from filters
+        subjectIncludesAny: ["[dev]", "RFC", "design review"],
+      },
+    },
+  ],
+}

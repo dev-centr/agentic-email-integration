@@ -1,0 +1,14 @@
+* xref:index.adoc[Overview]
+* Tutorials
+** xref:tutorial/first-check.adoc[First mail check]
+* How-to
+** xref:how-to/setup-gmail-himalaya.adoc[Set up Gmail with Himalaya]
+** xref:how-to/run-as-windows-task.adoc[Run the checker on Windows]
+** xref:how-to/wire-portal-docs.adoc[Wire into docs.devcentr.org]
+* Explanation
+** xref:explanation/why-integration-not-disposable.adoc[Why integration, not disposable inboxes]
+** xref:explanation/architecture.adoc[Architecture]
+* Reference
+** xref:reference/cli.adoc[CLI]
+** xref:reference/config.adoc[Config]
+** xref:reference/changelog.adoc[Changelog]

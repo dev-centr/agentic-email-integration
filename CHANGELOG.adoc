@@ -1,0 +1,6 @@
+= Changelog
+:description: Agentic Email Integration changelog timeline.
+
+== Timeline
+
+* 2026-08-06 — link:changelog-details/2026-08-06%20-%20initial%20scaffold.adoc[Initial scaffold]: CLI checker, Himalaya adapter, Cursor SDK trigger, Antora docs, CI.

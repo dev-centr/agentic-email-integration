@@ -1,0 +1,41 @@
+{
+  "name": "@dev-centr/agentic-email-integration",
+  "version": "0.1.0",
+  "description": "Local Gmail integration: poll mail via Himalaya, trigger Cursor agents for drafts and CI.",
+  "type": "module",
+  "bin": {
+    "aei": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "config.example.json5",
+    "README.adoc",
+    "CHANGELOG.adoc",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "dev": "tsx src/cli.ts",
+    "test": "node --import tsx --test src/**/*.test.ts",
+    "aei": "tsx src/cli.ts",
+    "docs:build": "antora antora-playbook.yml",
+    "prepack": "pnpm run build"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "packageManager": "pnpm@10.28.1",
+  "dependencies": {
+    "@cursor/sdk": "^1.0.26",
+    "commander": "^14.0.0",
+    "json5": "^2.2.3"
+  },
+  "devDependencies": {
+    "@antora/lunr-extension": "^1.0.0-alpha.13",
+    "@types/node": "^22.15.0",
+    "antora": "^3.1.14",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}

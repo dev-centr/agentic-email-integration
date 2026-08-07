@@ -1,0 +1,77 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: pnpm-lock.yaml
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        id: antora
+        uses: antora-supplemental/antora-build-action@v2
+        with:
+          playbook: antora-playbook.yml
+          output_dir: public
+          install_dependencies: false
+          setup_pnpm: false
+          setup_node: false
+          fetch: true
+
+      - name: Add Pages root redirect
+        run: |
+          SITE="${{ steps.antora.outputs.site-path }}"
+          printf '%s\n' \
+            '<!DOCTYPE html>' \
+            '<meta charset="utf-8">' \
+            '<meta http-equiv="refresh" content="0; url=agentic-email-integration/">' \
+            '<link rel="canonical" href="agentic-email-integration/">' \
+            '<title>Agentic Email Integration</title>' \
+            "<script>location.replace('agentic-email-integration/')</script>" \
+            '<p><a href="agentic-email-integration/">Agentic Email Integration documentation</a></p>' \
+            > "$SITE/index.html"
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ steps.antora.outputs.site-path }}
+
+  deploy:
+    needs: build-docs
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

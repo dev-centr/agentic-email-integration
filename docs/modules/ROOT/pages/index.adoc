@@ -1,0 +1,54 @@
+= Agentic Email Integration
+:navtitle: Overview
+:description: Own-your-inbox Gmail integration that polls mail via Himalaya and triggers Cursor agents for drafts and CI.
+
+**Agentic Email Integration** (`aei`) is a local checker and Cursor trigger for *your* Gmail — not a disposable agent mailbox.
+
+== What it does
+
+. Polls Gmail through the **Himalaya** CLI (Gmail API or IMAP).
+. Classifies messages with your rules (CI failures, PR noise, developer correspondence).
+. Starts a **local Cursor agent** (`@cursor/sdk`) in the right checkout.
+. Instructs the agent to **draft** replies with Himalaya — you send.
+
+== What it is not
+
+Products branded AgentMail / AgenticMail often mint isolated inboxes for agents. That breaks ownership of threads, OAuth connections to GitHub/CI vendors, and long-lived identity. This project is an **integration** into the mailbox you already own.
+
+== Requirements
+
+* Node.js 22.13+
+* https://github.com/pimalaya/himalaya[Himalaya] configured for your Gmail account
+* Cursor API key (`CURSOR_API_KEY`)
+* Optional: https://github.com/pimalaya/ortie[ortie] (or another OAuth token broker) for Gmail REST
+
+== Quick start
+
+[source,bash]
+----
+pnpm install
+pnpm build
+pnpm aei doctor
+pnpm aei check --dry-run
+----
+
+See xref:tutorial/first-check.adoc[First mail check] and xref:how-to/setup-gmail-himalaya.adoc[Set up Gmail with Himalaya].
+
+== Docs map (Diátaxis)
+
+[cols="1,2"]
+|===
+| Kind | Pages
+
+| Tutorial
+| xref:tutorial/first-check.adoc[First mail check]
+
+| How-to
+| Himalaya setup · Windows task · Portal wiring
+
+| Explanation
+| Integration vs disposable · Architecture
+
+| Reference
+| CLI · Config · Changelog
+|===

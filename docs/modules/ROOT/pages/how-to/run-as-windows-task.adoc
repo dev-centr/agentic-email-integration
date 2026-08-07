@@ -1,0 +1,23 @@
+= Run the checker on Windows
+:navtitle: Windows task
+:description: Keep aei watch running via Task Scheduler or a user login script.
+
+== Option A — interactive
+
+[source,powershell]
+----
+cd C:\code\github.com\dev-centr\agentic-email-integration
+$env:CURSOR_API_KEY = "cursor_..."
+pnpm aei watch
+----
+
+== Option B — Task Scheduler
+
+. Create a task that runs at logon (or on a schedule).
+. Action: start `pnpm.cmd` with arguments `aei watch -c %APPDATA%\agentic-email-integration\config.json5`.
+. Start in: the repo directory (or a global `aei` install path).
+. Use your user account so Himalaya/ortie can reach your token broker and secret store.
+
+== State
+
+Processed message ids live under `%APPDATA%\agentic-email-integration\processed.json`. Delete entries (or the file) to re-process.

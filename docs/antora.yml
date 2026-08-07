@@ -1,0 +1,6 @@
+name: agentic-email-integration
+title: Agentic Email Integration
+version: master
+start_page: ROOT:index.adoc
+nav:
+  - modules/ROOT/nav.adoc

@@ -1,0 +1,9 @@
+= Changelog
+:navtitle: Changelog
+:description: Timeline of Agentic Email Integration releases.
+
+Repo-root `CHANGELOG.adoc` is canonical for git history. Summary:
+
+== Timeline
+
+* *2026-08-06* — Initial scaffold: CLI checker, Himalaya adapter, Cursor SDK trigger, Antora docs, CI. Draft-only safety defaults.

@@ -1,0 +1,40 @@
+= Set up Gmail with Himalaya
+:navtitle: Gmail + Himalaya
+:description: Configure Himalaya (and optional ortie) so aei and Cursor agents can read mail and create drafts in your owned Gmail.
+
+`aei` does not embed the Gmail OAuth dance. It shells out to **Himalaya**; Cursor agents should do the same.
+
+== Install Himalaya
+
+Follow upstream: https://github.com/pimalaya/himalaya
+
+On Windows, put `himalaya` on `PATH`, or set `HIMALAYA_BIN` to the full path.
+
+== Gmail REST (preferred)
+
+Himalaya v2 uses an external OAuth broker (for example https://github.com/pimalaya/ortie[ortie]) and a bearer token command:
+
+[source,toml]
+----
+[accounts.gmail]
+email = "you@gmail.com"
+display-name = "You"
+
+gmail.auth.token.command = ["ortie", "token", "show", "-a", "gmail"]
+----
+
+Create drafts with Himalaya's message/write flows (see `himalaya message --help`). Never auto-send from automation until you deliberately change safety policy.
+
+== IMAP + app password (fallback)
+
+Enable IMAP and a Google app password, then configure Himalaya IMAP/SMTP with `password.command` pointing at a secret store. Prefer the Gmail REST backend when you can — labels map cleanly and stay aligned with the web UI.
+
+== Verify
+
+[source,bash]
+----
+himalaya -a gmail account check
+himalaya -a gmail envelope list INBOX -o json
+----
+
+Then `aei doctor` should report `himalaya.ok: true`.

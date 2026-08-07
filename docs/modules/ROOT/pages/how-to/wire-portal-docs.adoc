@@ -1,0 +1,33 @@
+= Wire into docs.devcentr.org
+:navtitle: Portal docs
+:description: Register this Antora component in the Dev-Centr docs playbook.
+
+Component name:: `agentic-email-integration`
+Start path:: `docs`
+
+== Production playbook
+
+In `dev-centr/docs` `antora-playbook.yml`, add:
+
+[source,yaml]
+----
+- url: https://github.com/dev-centr/agentic-email-integration.git
+  branches: HEAD
+  start_path: docs
+----
+
+== Local playbook
+
+In `antora-playbook-local.yml` (from the example):
+
+[source,yaml]
+----
+- url: ../agentic-email-integration
+  branches: HEAD
+  start_path: docs
+  worktrees: true
+----
+
+== Project Pages
+
+This repo also ships `antora-playbook.yml` and a docs workflow for GitHub Pages at `/agentic-email-integration/`.

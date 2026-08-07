@@ -1,0 +1,18 @@
+= Why integration, not disposable inboxes
+:navtitle: Integration vs disposable
+:description: Why agentic email should attach to your owned mailbox instead of minting AgentMail-style disposable inboxes.
+
+== The disposable inbox pitch
+
+Some products give each agent a throwaway address. That looks tidy in demos. It fails for developer work:
+
+* Vendor mail (GitHub, CI, registries) already lands in **your** identity.
+* OAuth and app connections are tied to that identity.
+* Threads, CC lists, and legal records need a stable owner.
+* You cannot “own” a conversation that never touched your account.
+
+== Integration model
+
+`aei` watches **your** Gmail. Agents use the same CLI you trust (Himalaya). Drafts stay in your Drafts folder. Sending remains a human action until you opt into something riskier.
+
+That is the whole product thesis: **agentic behavior without surrendering the mailbox**.

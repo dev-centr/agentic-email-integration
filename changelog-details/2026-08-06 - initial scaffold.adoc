@@ -1,0 +1,17 @@
+= Initial scaffold
+:description: First commit of agentic-email-integration — local checker, Himalaya, Cursor SDK, Antora, CI.
+
+== Added
+
+* `aei` CLI: `doctor`, `check`, `watch`
+* Himalaya envelope/message adapter (JSON list + read)
+* Rule-based classifier for CI and correspondence
+* Cursor SDK local `Agent.prompt` integration with draft-only prompts
+* JSON5 config example and processed-id state store
+* Antora component (Diátaxis) + project Pages playbook
+* GitHub Actions: CI (typecheck/test/build) + docs deploy workflow
+* Software Product Essentials hooks: `--version` build id, `doctor` dump
+
+== Safety
+
+* Default policy: create drafts only; never auto-send
