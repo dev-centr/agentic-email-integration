@@ -81,7 +81,7 @@ link:#readme-top[back to top]
 
 == Documentation
 
-* Live docs: https://docs.devcentr.org/agentic-email-integration/
+* Live docs: https://docs.devcentr.org/tools/agentic-email-integration/
 * Component docs source: `docs/` (Antora) — build with `pnpm docs:build` (validation only; hub publish via `dev-centr/docs`)
 * Portal wiring: see `docs/modules/ROOT/pages/how-to/wire-portal-docs.adoc`
 
@@ -100,7 +100,7 @@ link:#readme-top[back to top]
 DevCentr.org — support@devcentr.org
 
 * Project: https://github.com/dev-centr/agentic-email-integration
-* Docs: https://docs.devcentr.org/agentic-email-integration/
+* Docs: https://docs.devcentr.org/tools/agentic-email-integration/
 * Site: https://devcentr.org
 
 link:#readme-top[back to top]
