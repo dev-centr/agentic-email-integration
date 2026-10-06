@@ -30,3 +30,5 @@ config.local.json5
 state/
 *.log
 coverage/
+!/.editorconfig
+!/.gitattributes
