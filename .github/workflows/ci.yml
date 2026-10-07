@@ -43,3 +43,4 @@ jobs:
         with:
           name: aei-dist
           path: dist/
+          retention-days: 3
